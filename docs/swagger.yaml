@@ -1,0 +1,82 @@
+basePath: /api/v1
+definitions:
+  mampu-wallet_internal_domain.Withdraw:
+    properties:
+      amount:
+        type: number
+      user_id:
+        type: integer
+    required:
+    - amount
+    - user_id
+    type: object
+info:
+  contact: {}
+  description: Ini adalah dokumentasi API untuk sistem manajemen wallet.
+  termsOfService: http://swagger.io/terms/
+  title: API Wallet MAMPU.IO
+  version: "1.0"
+paths:
+  /check-connection:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses: {}
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get All User
+      parameters:
+      - description: Limit of pagination
+        in: query
+        name: limit
+        type: integer
+      - description: Page of pagination
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get All User
+      tags:
+      - User
+  /wallets:
+    post:
+      consumes:
+      - application/json
+      description: Withdraw Wallet
+      parameters:
+      - description: Payload Body for Withdraw [RAW]
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/mampu-wallet_internal_domain.Withdraw'
+      produces:
+      - application/json
+      responses: {}
+      summary: Withdraw Wallet
+      tags:
+      - Wallet
+  /wallets/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Balance Wallet
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get Balance Wallet
+      tags:
+      - Wallet
+swagger: "2.0"
